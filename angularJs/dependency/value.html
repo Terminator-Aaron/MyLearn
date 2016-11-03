@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>value</title>
+        <meta charset="utf-8"></meta>
+        <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>    
+    </head>
+    <body>
+        <div ng-app="mainApp" ng-controller="CalController">
+            <input ng-model="defaultInput">
+        </div>
+        <script>
+            var mainApp = angular.module("mainApp",[]);
+            mainApp.value("defaultInput", 5);
+
+            mainApp.controller("CalController", function($scope, defaultInput){
+                $scope.defaultInput = defaultInput;
+            });
+        </script>
+    </body>
+</html>

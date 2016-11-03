@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>constant</title>
+        <meta charset="utf-8"></meta>
+        <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>    
+    </head>
+    <body>
+        <div ng-app="mainApp" ng-controller="CalController">
+            <input ng-model="defaultConstant">
+        </div>
+        <script>
+            var mainApp = angular.module("mainApp",[]);
+            mainApp.constant("defaultConstant", 5);
+
+            mainApp.controller("CalController", function($scope, defaultConstant){
+                $scope.defaultConstant = defaultConstant;
+            });
+        </script>
+    </body>
+</html>

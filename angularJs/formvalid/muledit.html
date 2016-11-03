@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>muledit</title>
+    <meta charset="utf-8"></meta>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Validation Example</h2>
+
+    <form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate>
+
+        <div ng-repeat="p in Persons">
+            <p>用户名:<br>
+                <input type="text" name="user_{{$index}}" ng-model="p.user" required>
+                <span style="color:red" ng-show="baseShow(myForm, 'user', $index)">
+  <span ng-show="requiredShow(myForm, 'user', $index)">用户名是必须的。</span>
+                </span>
+            </p>
+
+            <p>邮箱:<br>
+                <input type="email" name="email_{{$index}}" ng-model="p.email" required>
+                <span style="color:red" ng-show="baseShow(myForm, 'email', $index)">
+  <span ng-show="requiredShow(myForm, 'email', $index)">邮箱是必须的。</span>
+                <span ng-show="emailShow(myForm, 'email', $index)">非法的邮箱。</span>
+                </span>
+            </p>
+
+            <hr/>
+        </div>
+            <p>
+                <input type="submit" ng-disabled="myForm.$dirty && myForm.$invalid">
+            </p>
+    </form>
+
+    <script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+$scope.Persons=[
+    {user:"John Doe",email:"john.doe@gmail.com"},
+    {user:"John Doe2",email:"john2.doe@gmail.com"},
+    {user:"John Doe3",email:"john3.doe@gmail.com"}];
+$scope.baseShow=function(myForm, name, index){ 
+    return myForm[name + "_" +index].$dirty && myForm[name + "_" +index].$invalid 
+}
+$scope.requiredShow=function(myForm, name, index){ 
+    return myForm[name + "_" +index].$error.required; 
+}
+$scope.emailShow=function(myForm, name, index){ 
+    return myForm[name + "_" +index].$error.email; 
+}
+});
+
+</script>
+
+</body>
+
+</html>

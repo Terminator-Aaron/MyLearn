@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="customersCtrl">
+        <ul ng-repeat="x in names">
+            <li>{{ x.Name + ', ' + x.Country }}</li>
+        </ul>
+    </div>
+
+    <script>
+var app = angular.module('myApp', []);
+
+
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("http://localhost:3810/api/AngularJsHttpDataText")
+    .success(function(response) {
+        $scope.names = response.records;
+    });
+});
+</script>
+</body>
+
+</html>
