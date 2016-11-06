@@ -7,8 +7,8 @@
 -debug:full
 -nostdlib
 -nologo
-"C:\MyLearn\webapi\CoreEmpty\src\_StaticFiles\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"C:\MyLearn\webapi\CoreEmpty\src\_StaticFiles\bin\Debug\netcoreapp1.0\_StaticFiles.dll"
+"C:\MyLearn\core\CoreEmpty\src\_StaticFiles\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"C:\MyLearn\core\CoreEmpty\src\_StaticFiles\bin\Debug\netcoreapp1.0\_StaticFiles.dll"
 -r:"C:\Users\Aaron\.nuget\packages\Microsoft.AspNetCore.Diagnostics\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Diagnostics.dll"
 -r:"C:\Users\Aaron\.nuget\packages\Microsoft.AspNetCore.Diagnostics.Abstractions\1.0.0\lib\netstandard1.0\Microsoft.AspNetCore.Diagnostics.Abstractions.dll"
 -r:"C:\Users\Aaron\.nuget\packages\Microsoft.AspNetCore.Hosting\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Hosting.dll"
@@ -119,6 +119,6 @@
 -r:"C:\Users\Aaron\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\Aaron\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\Aaron\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"C:\MyLearn\webapi\CoreEmpty\src\_StaticFiles\obj\Debug\netcoreapp1.0\_StaticFilesdotnet-compile.deps.json",_StaticFiles.deps.json
-"C:\MyLearn\webapi\CoreEmpty\src\_StaticFiles\Program.cs"
-"C:\MyLearn\webapi\CoreEmpty\src\_StaticFiles\Startup.cs"
+-resource:"C:\MyLearn\core\CoreEmpty\src\_StaticFiles\obj\Debug\netcoreapp1.0\_StaticFilesdotnet-compile.deps.json",_StaticFiles.deps.json
+"C:\MyLearn\core\CoreEmpty\src\_StaticFiles\Program.cs"
+"C:\MyLearn\core\CoreEmpty\src\_StaticFiles\Startup.cs"
