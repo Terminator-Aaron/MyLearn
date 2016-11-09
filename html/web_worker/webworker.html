@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>web worker</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"></meta>
+</head>
+
+<body>
+	<span id="result"></span>
+	<button onclick="startWorker();">start</button>
+	<button onclick="stopWorker();">stop</button>
+	<script>
+            var w;
+            function startWorker(){
+                if(typeof(Worker) !== "undefined") {
+                    if(typeof(w) == "undefined") {
+                        w = new Worker("demo_workers.js");
+                        w.onmessage=function(e){
+                            document.getElementById("result").innerHTML = e.data;
+                        };
+                    }
+                }
+            }
+
+            function stopWorker(){
+                w.terminate();
+                w=undefined;
+            }
+        </script>
+</body>
+
+</html>

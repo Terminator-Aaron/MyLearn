@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>web sql db 浏览器本地数据库</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"></meta>
+</head>
+
+<body>
+	<section id="command_wrap">
+		<button onclick="init();">建库，建表</button>
+        <button onclick="_select();">查询</button>
+		<button onclick="_insert();">插数据</button>
+        <button onclick="_delete();">删数据</button>
+        <button onclick="_update();">更新数据</button>
+	</section>
+
+	<section id="edit">
+		<label for="uniqueId"></label><input type="text" name="uniqueId" id="uniqueId" />
+		<br/>
+		<label for="log"></label><input type="text" name="log" id="log" />
+	</section>
+
+	<section id="datalist">
+
+	</section>
+
+	<div id="status">
+
+	</div>
+
+	<script>
+            function init(){
+                /*
+                    数据库名称:myDb
+                    版本号:1.0
+                    描述文本:my first test db
+                    数据库大小:2*1024*1024=2M
+                    创建回调:
+                */
+                var db = openDatabase("myDb", "1.0", "my first test db", 2*1024*1024, function(){
+                    debugger;
+                    document.querySelector('#status').innerHTML += "数据库myDb创建成功！<br/>";
+                }); 
+
+                db.transaction(function(tx){
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)',[], function(){
+                        document.querySelector('#status').innerHTML += "数据表LOGS创建成功！<br/>";
+                    },function(){
+                        document.querySelector('#status').innerHTML += "数据表LOGS创建失败！<br/>";
+                    });
+                });
+            }
+            /*----------------------------------------------*/
+            function _select(){
+                var db = openDatabase("myDb", "1.0", null, null);
+                db.transaction(function(tx){
+                    tx.executeSql("SELECT * FROM LOGS",[], function(tx, results){
+                        var len = results.rows.length,i, item;
+                        document.querySelector('#status').innerHTML+="<hr/>";
+                        for(i=0;i<len;i++){
+                            item = results.rows.item(i);
+                            document.querySelector('#status').innerHTML+= "id="+item.id+",log="+item.log+"<br/>";
+                        }
+                    });
+                });
+            }
+            /*----------------------------------------------*/
+            function _insert(){
+                var uniqueId = document.querySelector('#uniqueId').value;
+                var log = document.querySelector('#log').value;
+                var db = openDatabase("myDb", "1.0",  null, null); //一定要有4个参数
+                db.transaction(function(tx){
+                    tx.executeSql('INSERT INTO LOGS (id,log) VALUES (?, ?)', [uniqueId, log], function(){
+                        document.querySelector('#status').innerHTML += "<hr/>插入记录id="+uniqueId+",log="+log+"成功！<br/>";
+                    });
+                });
+            }
+            /*----------------------------------------------*/
+            function _delete(){
+                var uniqueId = document.querySelector('#uniqueId').value;
+                var db = openDatabase("myDb", "1.0",  null, null);
+                db.transaction(function(tx){
+                    tx.executeSql('DELETE FROM LOGS WHERE id=?', [uniqueId], function(){
+                        document.querySelector('#status').innerHTML += "<hr/>删除记录id="+uniqueId+"成功！<br/>";
+                    });
+                });
+            }
+            /*----------------------------------------------*/
+            function _update(){
+                var uniqueId = document.querySelector('#uniqueId').value;
+                var log = document.querySelector('#log').value;
+                var db = openDatabase("myDb", "1.0",  null, null);
+                db.transaction(function(tx){
+                    tx.executeSql('UPDATE LOGS SET log=? WHERE id=?', [log, uniqueId], function(){
+                        document.querySelector('#status').innerHTML += "<hr/>更新记录id="+uniqueId+",log="+log+"成功！<br/>";
+                    });
+                });
+            }
+
+        </script>
+</body>
+
+</html>
