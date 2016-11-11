@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>animations 动画</title>
+    <meta charset="utf-8" />
+    <style>
+        @keyframes myfirst{
+            from {width: 100px;background-color: green;}
+            to {width: 300px;background-color: blue;}
+        }
+
+        div {
+            height: 50px;
+            border: 1px solid black;
+            animation: myfirst 5s linear 2s infinite alternate running;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="div1">animation from to</div>
+    <hr/>
+</body>
+
+</html>

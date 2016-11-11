@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>background-orgin</title>
+    <meta charset="utf-8" />
+    <style>
+        div {
+            padding: 35px;
+            border: 20px black dashed;
+            margin: 10px;
+            background-color: lightblue;
+        }
+        
+        #div1 {
+            background-clip: padding-box;
+        }
+        
+        #div2 {
+            background-clip: content-box;
+        }
+        
+        #div3 {
+            background-clip: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <p>background-clip: padding-box</p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+        aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+        ut aliquip ex ea commodo consequat.
+    </div>
+    <div id="div2">
+        <p>background-clip: content-box</p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+        aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+        ut aliquip ex ea commodo consequat.
+    </div>
+    <div id="div3">
+        <p>background-clip: border-box</p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+        aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+        ut aliquip ex ea commodo consequat.
+    </div>
+</body>
+
+</html>
