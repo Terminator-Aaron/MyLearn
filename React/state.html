@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>react</title>
+    <meta charset="utf-8" />
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+             {/*getInitialState用于初始化状态*/}
+       var LinkButton = React.createClass({
+            getInitialState:function(){
+                return {liked:false};
+            },
+            handleClick:function(){
+                this.setState({liked:!this.state.liked});
+            },
+            render:function(){
+                var text = this.state.liked?"喜欢":"不喜欢";
+                return (
+                    <p onClick={this.handleClick}>
+                        你<b>{text}</b>我。点我切换状态。
+                    </p>
+                )
+            },
+        });
+
+        ReactDOM.render(
+            <LinkButton/>,
+            document.getElementById("example")
+        );
+    </script>
+</body>
+
+</html>

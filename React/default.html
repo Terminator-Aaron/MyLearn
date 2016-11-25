@@ -21,13 +21,14 @@
     <!--<script type="text/babel" src="helloworld.js"></script>-->
 
     <!--<script type="text/babel">
+        //JavaScript 表达式
         ReactDOM.render(
             <h1>{1+1}</h1>,
             document.getElementById("example2")
         );
     </script>-->
 
-     <!--<script type="text/babel">
+    <!--<script type="text/babel">
 	  var i = 2;
       ReactDOM.render(
       	<div>
@@ -37,6 +38,41 @@
       	document.getElementById('example')
       );
     </script>-->
+
+    <!--<script type="text/babel">
+        //样式
+        var myStyle={
+            fontSize:100,
+            color:'#FF0000'
+        }
+        ReactDOM.render(
+            <h1 style={myStyle}>菜鸟教程</h1>,
+            document.getElementById("example")
+        );
+    </script>-->
+
+
+    <!--<script type="text/babel">
+    ReactDOM.render(
+        <div>
+            <h1>菜鸟教程</h1>
+            {/*注释...*/}
+        </div>, 
+        document.getElementById('example') 
+    );
+    </script>-->
+
+    <script type="text/babel">
+        //数组
+        var arr=[
+            <h1>菜鸟教程</h1>,
+            <h2>学的不仅是技术，更是梦想！</h2>,
+        ];
+        ReactDOM.render(
+            <div>{arr}</div>, 
+            document.getElementById('example') 
+        );
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>组件compent</title>
+    <meta charset="utf-8" />
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        //组件
+        var HelloMessage = React.createClass({
+            render:function(){
+                return <h1>Hello World!</h1>
+            }
+        });
+
+        ReactDOM.render(
+            <HelloMessage/>,
+            document.getElementById("example")
+        );
+    </script>
+
+
+    <script type="text/babel">
+        //组件传参数
+        var HelloMessage = React.createClass({
+            render:function(){
+                return <h1>Hello {this.props.name}!</h1>
+            }
+        });
+
+        ReactDOM.render(
+            <HelloMessage name="aaron"/>,
+            document.getElementById("example")
+        );
+    </script>
+
+
+    <script type="text/babel">
+        //复合组件
+        var Name = React.createClass({
+            render:function(){
+                return <h1>Hello {this.props.name}!</h1>
+            }
+        });
+
+        var Link = React.createClass({
+            render:function(){
+                return <a href={this.props.site}>{this.props.site}</a>
+            }
+        });
+
+        var WebSite = React.createClass({
+            render:function(){
+                return (
+                    <div>
+                        <Name name={this.props.name}/>
+                        <Link site={this.props.site}/>
+                    </div>
+                )
+            }
+        });
+
+        ReactDOM.render(
+            <WebSite name="aaron" site="http://www.runoob.com"/>,
+            document.getElementById("example")
+        );
+    </script>
+
+</body>
+
+</html>
