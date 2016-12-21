@@ -40,7 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgEnergyCell.cs" />
+    <Compile Include="Atom.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="Direction.cs" />
+    <Compile Include="PositionBase2.cs" />
     <Compile Include="RGB.cs" />
     <Compile Include="HotPot.cs" />
     <Compile Include="PositionBase.cs" />
