@@ -17,63 +17,67 @@ namespace WinApp
 {
     public partial class EnergyForm : Form
     {
-        Graphics g;
+
         Pen pen = new Pen(Color.Red);
         const int Length = 4;
         int MaxX; // 165
         int MaxY;
 
-        Dictionary<int, List<Cell>> DrawCells;
+        // Dictionary<int, List<Cell>> DrawCells;
 
         EnergyLogic EnergyLogic;
+        AtomLogic AtomLogic;
 
         public EnergyForm()
         {
             InitializeComponent();
             EnergyLogic = new EnergyLogic();
+            AtomLogic = new AtomLogic();
         }
 
         private void btnInitBackground_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //g = this.pnlContaner.CreateGraphics();
-                //g.Clear(Color.White);
+
+            //g = this.pnlContaner.CreateGraphics();
+            //g.Clear(Color.White);
 
 
-                MaxX = 165;
-                MaxY = 165;
+            MaxX = 90;
+            MaxY = 90;
 
-                EnergyLogic.InitCells(MaxX, MaxX, 0.0, 2);
-                MessageBox.Show("数据生成完成");
-                EnergyLogic.SetHotPot(30, 20, 10, 10, 1.0);
-                EnergyLogic.SetHotPot(60, 80, 10, 10, 1.0);
+            EnergyLogic.InitCells(MaxX, MaxX, 0.0, 2);
+            MessageBox.Show("数据生成完成");
+            EnergyLogic.SetHotPot(30, 20, 10, 10, 1.0);
+            EnergyLogic.SetHotPot(60, 80, 10, 10, 1.0);
 
-                //DrawCells = new Dictionary<int, List<Cell>>();
+            AtomLogic.InitAtoms(MaxX, MaxY, Length);
+
+            dgvAtom.DataSource = AtomLogic.Atoms;
+
+            //DrawCells = new Dictionary<int, List<Cell>>();
 
 
-                //for (int i = 0; i < 20; i++)
-                //{
-                //    var perSecondCells = EnergyLogic.InitCells(MaxX, MaxY, r);
-                //    DrawCells.Add(i, perSecondCells);
-                //}
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    var perSecondCells = EnergyLogic.InitCells(MaxX, MaxY, r);
+            //    DrawCells.Add(i, perSecondCells);
+            //}
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "信息提示");
-            }
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             string filePath = string.Empty;
-
+            Graphics g;
 
             Rectangle rectBorder;
             Rectangle rectContent;
             Color contentColor;
             Brush contentBrush;
+
+            Brush atomBrush = new SolidBrush(Color.Red);
+            Brush strBrush = new SolidBrush(Color.Blue);
 
             for (int i = 0; i < 500; i++) // one second
             {
@@ -95,13 +99,42 @@ namespace WinApp
                     rectContent = new Rectangle((cell.PositionX - 1) * Length, (cell.PositionY - 1) * Length, Length, Length);
                     g.FillRectangle(contentBrush, rectContent);
                 }
+
+                foreach (var atom in AtomLogic.Atoms)
+                {
+                    g.FillEllipse(atomBrush, atom.PositionX, atom.PositionY, 10, 10);
+                    g.DrawString(i.ToString(), Font, strBrush, atom.PositionX, atom.PositionY);
+                }
+
+
                 img.Save(filePath, ImageFormat.Png);
 
                 g.Dispose();
                 img.Dispose();
 
                 EnergyLogic.ArgEnergyCells();
+                AtomLogic.CalAtomStatus();
             }
+        }
+
+        private void btnLoadImg_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.pnlContaner.CreateGraphics();
+            g.Clear(Color.White);
+            string filePath = @"../../Image";
+
+            var imageFolder = Directory.CreateDirectory(filePath);
+            var images = imageFolder.GetFiles().OrderBy(m => m.CreationTime);
+
+            foreach (var imagefile in images)
+            {
+                Thread.Sleep(100);
+                Bitmap bitmap = new Bitmap(imagefile.FullName);
+                g.DrawImage(bitmap, 0, 0);
+            }
+
+            g.Dispose();
+
         }
     }
 }

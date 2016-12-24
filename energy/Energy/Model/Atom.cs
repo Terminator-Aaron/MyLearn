@@ -8,6 +8,8 @@ namespace Model
 {
     public class Atom : PositionBase
     {
+        public int Iden { get; set; }
+
         /// <summary>
         /// 体积/碰撞半径
         /// </summary>
@@ -31,11 +33,23 @@ namespace Model
         /// <summary>
         /// 运动速度
         /// </summary>
-        //public double v { get; set; }
+        public double Velocity { get; set; }
 
         /// <summary>
-        /// 运动方向速度/向量
+        /// 运动方向/向量
         /// </summary>
-        public Direction v { get; set; }
+        public Direction Direction { get; set; }
+
+        #region 中间状态
+
+        public int TempPositionX { get; set; }
+        public int TempPositionY { get; set; }
+        public Direction TempDirection { get; set; }
+
+        public Move DismantleVelocity { get; set; }
+
+        #endregion
+
+
     }
 }
