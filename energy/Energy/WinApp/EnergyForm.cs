@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using Db.Models;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,16 @@ namespace WinApp
 
         // Dictionary<int, List<Cell>> DrawCells;
 
-        EnergyLogic EnergyLogic;
+        EnergyCellLogic EnergyLogic;
         AtomLogic AtomLogic;
+        ExperimentLogic ExperimentLogic;
 
         public EnergyForm()
         {
             InitializeComponent();
-            EnergyLogic = new EnergyLogic();
+            EnergyLogic = new EnergyCellLogic();
             AtomLogic = new AtomLogic();
+            ExperimentLogic = new ExperimentLogic();
         }
 
         private void btnInitBackground_Click(object sender, EventArgs e)
@@ -40,30 +43,43 @@ namespace WinApp
 
             //g = this.pnlContaner.CreateGraphics();
             //g.Clear(Color.White);
+            MaxX = 150;
+            MaxY = 150;
+
+            Experiment experiment = new Experiment()
+            {
+                InitStartTime = DateTime.Now,
+                MaxX = MaxX,
+                MaxY = MaxY,
+                ByWho = "aaron zhang",
+                Remark = ""
+            };
 
 
-            MaxX = 90;
-            MaxY = 90;
-
-            EnergyLogic.InitCells(MaxX, MaxX, 0.0, 2);
-            MessageBox.Show("数据生成完成");
-            EnergyLogic.SetHotPot(30, 20, 10, 10, 1.0);
+            EnergyLogic.InitEnergyCells(MaxX, MaxX, 0.0, 2);
+            EnergyLogic.SetHotPot(10, 20, 10, 10, 1.0);
             EnergyLogic.SetHotPot(60, 80, 10, 10, 1.0);
 
-            AtomLogic.InitAtoms(MaxX, MaxY, Length);
+            AtomLogic.InitAtoms(MaxX, MaxY, Length, 20);
 
-            dgvAtom.DataSource = AtomLogic.Atoms;
+            experiment.InitEndTime = DateTime.Now;
+            MessageBox.Show("数据生成完成");
 
-            //DrawCells = new Dictionary<int, List<Cell>>();
 
+            //List<EnergyCellExtend> newCellExtends;
+            //List<AtomExtend> newAtomExtends;
 
-            //for (int i = 0; i < 20; i++)
+            //var result = ExperimentLogic.CreateExperiment(experiment, EnergyLogic.EnergyCells, AtomLogic.Atoms, out newCellExtends, out newAtomExtends);
+            //if (result)
             //{
-            //    var perSecondCells = EnergyLogic.InitCells(MaxX, MaxY, r);
-            //    DrawCells.Add(i, perSecondCells);
+            //    MessageBox.Show("数据保存成功");
+            //    txtExperimentID.Text = ExperimentLogic.Experiment.ExperimentID.ToString();
+            //    EnergyLogic.SetEnergyCells(newCellExtends);
+            //    AtomLogic.SetAtoms(newAtomExtends);
             //}
 
 
+            //dgvAtom.DataSource = AtomLogic.Atoms;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -79,8 +95,14 @@ namespace WinApp
             Brush atomBrush = new SolidBrush(Color.Red);
             Brush strBrush = new SolidBrush(Color.Blue);
 
+
             for (int i = 0; i < 500; i++) // one second
             {
+                //if (i < 10)
+                //ExperimentLogic.SaveExperimentTickData(EnergyLogic.GetTickCells(i + 1), AtomLogic.GetTickAtoms(i + 1));
+                EnergyLogic.GetTickCells(i + 1);
+                AtomLogic.GetTickAtoms(i + 1);
+
                 //Thread.Sleep(300);
                 filePath = string.Format(@"../../Image/cells_{0}.png", i + 1);
 
@@ -88,24 +110,20 @@ namespace WinApp
 
                 g = Graphics.FromImage(img);
 
-                foreach (var cell in EnergyLogic.SecondCells)
+                foreach (var cell in EnergyLogic.EnergyCells)
                 {
-                    //rectBorder = new Rectangle(cell.PositionX * Length, cell.PositionY * Length, Length, Length);
-                    //g.DrawRectangle(pen, rectBorder);
-
-                    var rgb = EnergyLogic.GetGRB(cell.Energy);
+                    var rgb = EnergyCellLogic.GetGRB(cell.Energy);
                     contentColor = Color.FromArgb(rgb.R, rgb.G, rgb.B);
                     contentBrush = new SolidBrush(contentColor);
-                    rectContent = new Rectangle((cell.PositionX - 1) * Length, (cell.PositionY - 1) * Length, Length, Length);
+                    rectContent = new Rectangle((cell.CellX - 1) * Length, (cell.CellY - 1) * Length, Length, Length);
                     g.FillRectangle(contentBrush, rectContent);
                 }
 
                 foreach (var atom in AtomLogic.Atoms)
                 {
-                    g.FillEllipse(atomBrush, atom.PositionX, atom.PositionY, 10, 10);
-                    g.DrawString(i.ToString(), Font, strBrush, atom.PositionX, atom.PositionY);
+                    g.FillEllipse(atomBrush, atom.PositionX - 5, atom.PositionY - 5, 10, 10);
+                    g.DrawString(atom.Order.ToString(), Font, strBrush, atom.PositionX - 5, atom.PositionY - 5);
                 }
-
 
                 img.Save(filePath, ImageFormat.Png);
 
@@ -126,8 +144,14 @@ namespace WinApp
             var imageFolder = Directory.CreateDirectory(filePath);
             var images = imageFolder.GetFiles().OrderBy(m => m.CreationTime);
 
+            var i = 0;
+
             foreach (var imagefile in images)
             {
+                i++;
+                dgvAtom.DataSource = AtomLogic.TickAtoms[i];
+                dgvCell.DataSource = EnergyLogic.TickCells[i];
+
                 Thread.Sleep(100);
                 Bitmap bitmap = new Bitmap(imagefile.FullName);
                 g.DrawImage(bitmap, 0, 0);

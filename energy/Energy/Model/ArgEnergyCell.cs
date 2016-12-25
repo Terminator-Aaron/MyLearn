@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Db.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class ArgEnergyCell:PositionBase
+    public class ArgEnergyCell
     {
-        public List<Cell> RelactedCells { get; set; }
+        public int CellX { get; set; }
+        public int CellY { get; set; }
+
+        public List<EnergyCellExtend> RelactedCells { get; set; }
         public double ArgEnergy
         {
-            get 
+            get
             {
                 if (RelactedCells == null)
                 {

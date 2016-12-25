@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 namespace Model
 {
     // 格子
-    public class Cell : PositionBase
+    public class Cell
     {
+        public int CellX { get; set; }
+        public int CellY { get; set; }
+
         /// <summary>
         /// 单元格具有的能量
         /// </summary>

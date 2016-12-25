@@ -35,33 +35,35 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnLoadImg = new System.Windows.Forms.Button();
             this.dgvAtom = new System.Windows.Forms.DataGridView();
-            this.lvAtom = new System.Windows.Forms.ListView();
+            this.txtExperimentID = new System.Windows.Forms.TextBox();
+            this.dgvCell = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCell)).BeginInit();
             this.SuspendLayout();
             // 
             // btnInitBackground
             // 
-            this.btnInitBackground.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnInitBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInitBackground.Location = new System.Drawing.Point(1093, 12);
             this.btnInitBackground.Name = "btnInitBackground";
             this.btnInitBackground.Size = new System.Drawing.Size(75, 23);
             this.btnInitBackground.TabIndex = 0;
-            this.btnInitBackground.Text = "加载界面";
+            this.btnInitBackground.Text = "生成试验数据";
             this.btnInitBackground.UseVisualStyleBackColor = true;
             this.btnInitBackground.Click += new System.EventHandler(this.btnInitBackground_Click);
             // 
             // txtStartIndex
             // 
-            this.txtStartIndex.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtStartIndex.Location = new System.Drawing.Point(1068, 100);
+            this.txtStartIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStartIndex.Location = new System.Drawing.Point(987, 453);
             this.txtStartIndex.Name = "txtStartIndex";
             this.txtStartIndex.Size = new System.Drawing.Size(100, 21);
             this.txtStartIndex.TabIndex = 1;
             // 
             // btnLoadData
             // 
-            this.btnLoadData.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnLoadData.Location = new System.Drawing.Point(1093, 139);
+            this.btnLoadData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadData.Location = new System.Drawing.Point(1093, 453);
             this.btnLoadData.Name = "btnLoadData";
             this.btnLoadData.Size = new System.Drawing.Size(75, 23);
             this.btnLoadData.TabIndex = 2;
@@ -70,19 +72,18 @@
             // 
             // pnlContaner
             // 
-            this.pnlContaner.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlContaner.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlContaner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlContaner.Location = new System.Drawing.Point(12, 12);
             this.pnlContaner.Name = "pnlContaner";
-            this.pnlContaner.Size = new System.Drawing.Size(826, 464);
+            this.pnlContaner.Size = new System.Drawing.Size(729, 464);
             this.pnlContaner.TabIndex = 3;
             // 
             // btnStart
             // 
-            this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnStart.Location = new System.Drawing.Point(1093, 59);
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStart.Location = new System.Drawing.Point(1093, 41);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 4;
@@ -92,7 +93,8 @@
             // 
             // btnLoadImg
             // 
-            this.btnLoadImg.Location = new System.Drawing.Point(1093, 178);
+            this.btnLoadImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadImg.Location = new System.Drawing.Point(1012, 41);
             this.btnLoadImg.Name = "btnLoadImg";
             this.btnLoadImg.Size = new System.Drawing.Size(75, 23);
             this.btnLoadImg.TabIndex = 5;
@@ -102,27 +104,39 @@
             // 
             // dgvAtom
             // 
+            this.dgvAtom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAtom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAtom.Location = new System.Drawing.Point(859, 207);
+            this.dgvAtom.Location = new System.Drawing.Point(758, 70);
             this.dgvAtom.Name = "dgvAtom";
             this.dgvAtom.RowTemplate.Height = 23;
-            this.dgvAtom.Size = new System.Drawing.Size(240, 150);
+            this.dgvAtom.Size = new System.Drawing.Size(419, 331);
             this.dgvAtom.TabIndex = 6;
             // 
-            // lvAtom
+            // txtExperimentID
             // 
-            this.lvAtom.Location = new System.Drawing.Point(859, 363);
-            this.lvAtom.Name = "lvAtom";
-            this.lvAtom.Size = new System.Drawing.Size(121, 97);
-            this.lvAtom.TabIndex = 7;
-            this.lvAtom.UseCompatibleStateImageBehavior = false;
+            this.txtExperimentID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExperimentID.Location = new System.Drawing.Point(987, 14);
+            this.txtExperimentID.Name = "txtExperimentID";
+            this.txtExperimentID.Size = new System.Drawing.Size(100, 21);
+            this.txtExperimentID.TabIndex = 8;
+            // 
+            // dgvCell
+            // 
+            this.dgvCell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvCell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCell.Location = new System.Drawing.Point(758, 209);
+            this.dgvCell.Name = "dgvCell";
+            this.dgvCell.RowTemplate.Height = 23;
+            this.dgvCell.Size = new System.Drawing.Size(410, 238);
+            this.dgvCell.TabIndex = 9;
             // 
             // EnergyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1180, 488);
-            this.Controls.Add(this.lvAtom);
+            this.Controls.Add(this.dgvCell);
+            this.Controls.Add(this.txtExperimentID);
             this.Controls.Add(this.dgvAtom);
             this.Controls.Add(this.btnLoadImg);
             this.Controls.Add(this.btnStart);
@@ -133,6 +147,7 @@
             this.Name = "EnergyForm";
             this.Text = "能量测试界面";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCell)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,7 +162,8 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnLoadImg;
         private System.Windows.Forms.DataGridView dgvAtom;
-        private System.Windows.Forms.ListView lvAtom;
+        private System.Windows.Forms.TextBox txtExperimentID;
+        private System.Windows.Forms.DataGridView dgvCell;
     }
 }
 

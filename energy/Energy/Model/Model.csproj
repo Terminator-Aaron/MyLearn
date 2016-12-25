@@ -40,9 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgEnergyCell.cs" />
-    <Compile Include="Atom.cs" />
-    <Compile Include="Cell.cs" />
+    <Compile Include="AtomExtend.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="EnergyCellExtend.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="PositionBase2.cs" />
     <Compile Include="RGB.cs" />
@@ -50,8 +50,12 @@
     <Compile Include="PositionBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Container\" />
+    <ProjectReference Include="..\Database\Db.csproj">
+      <Project>{f06f71f3-1257-4172-9ff8-41529a9eed33}</Project>
+      <Name>Db</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
