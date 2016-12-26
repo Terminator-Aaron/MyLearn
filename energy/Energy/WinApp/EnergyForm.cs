@@ -30,12 +30,29 @@ namespace WinApp
         AtomLogic AtomLogic;
         ExperimentLogic ExperimentLogic;
 
+
+        #region Demo
+
+        private bool _IsStopping = false;
+        private int _Tick = 1;
+        private int _MaxTick = 0;
+        //private Graphics _DemoG;
+        private Bitmap _DemoBitmap;
+        private IList<FileInfo> _ImageFiles;
+
+        #endregion
+
+
         public EnergyForm()
         {
             InitializeComponent();
             EnergyLogic = new EnergyCellLogic();
             AtomLogic = new AtomLogic();
             ExperimentLogic = new ExperimentLogic();
+
+            btnDemoResum.Enabled = false;
+            btnDemoStop.Enabled = false;
+            btnDemoEnd.Enabled = false;
         }
 
         private void btnInitBackground_Click(object sender, EventArgs e)
@@ -135,30 +152,125 @@ namespace WinApp
             }
         }
 
-        private void btnLoadImg_Click(object sender, EventArgs e)
+
+
+        #region Deom
+
+        private void LoadImageAndData()
         {
-            Graphics g = this.pnlContaner.CreateGraphics();
-            g.Clear(Color.White);
-            string filePath = @"../../Image";
+            int index = _Tick - 1;
+            var imagefile = _ImageFiles[index];
+            //dgvAtom.DataSource = AtomLogic.TickAtoms[_Tick];
+            //dgvCell.DataSource = EnergyLogic.TickCells[_Tick];
+            Thread.Sleep(100);
+            var demoG = this.pnlContaner.CreateGraphics();
+            _DemoBitmap = new Bitmap(imagefile.FullName);
+            demoG.DrawImage(_DemoBitmap, 0, 0);
+            demoG.Dispose();
+
+            _Tick++;
+
+            StartTaskToLoadImageAndData();
+        }
+
+        private void StartTaskToLoadImageAndData()
+        {
+            if (_MaxTick > 0 && _Tick <= _MaxTick && _IsStopping == false)
+            {
+                Task t = new Task(() =>
+                {
+                    this.LoadImageAndData();
+                });
+                t.Start();
+            }
+        }
+
+        private void btnDemoStart_Click(object sender, EventArgs e)
+        {
+            btnDemoStart.Enabled = false;
+            txtImagePath.Enabled = false;
+            btnDemoStop.Enabled = true;
+            btnDemoEnd.Enabled = true;
+
+            //_DemoG = this.pnlContaner.CreateGraphics();
+            //_DemoG.Clear(Color.White);
+            string filePath = txtImagePath.Text;
 
             var imageFolder = Directory.CreateDirectory(filePath);
-            var images = imageFolder.GetFiles().OrderBy(m => m.CreationTime);
+            _ImageFiles = imageFolder.GetFiles().OrderBy(m => m.CreationTime).ToList();
+            _MaxTick = _ImageFiles.Count();
 
-            var i = 0;
+            // 多线程
+            StartTaskToLoadImageAndData();
 
-            foreach (var imagefile in images)
-            {
-                i++;
-                dgvAtom.DataSource = AtomLogic.TickAtoms[i];
-                dgvCell.DataSource = EnergyLogic.TickCells[i];
+            //for (var i = 0; i < _ImageFiles.Count(); i++)
+            //{
+            //    var imagefile = _ImageFiles[i];
+            //    dgvAtom.DataSource = AtomLogic.TickAtoms[i];
+            //    dgvCell.DataSource = EnergyLogic.TickCells[i];
 
-                Thread.Sleep(100);
-                Bitmap bitmap = new Bitmap(imagefile.FullName);
-                g.DrawImage(bitmap, 0, 0);
-            }
+            //    Thread.Sleep(1000);
+            //    Bitmap bitmap = new Bitmap(imagefile.FullName);
+            //    _DemoG.DrawImage(bitmap, 0, 0);
+            //}
 
-            g.Dispose();
+            //var i = 0;
+            //foreach (var imagefile in _ImageFiles)
+            //{
+            //    i++;
+            //    dgvAtom.DataSource = AtomLogic.TickAtoms[i];
+            //    dgvCell.DataSource = EnergyLogic.TickCells[i];
+
+            //    Thread.Sleep(1000);
+            //    Bitmap bitmap = new Bitmap(imagefile.FullName);
+            //    _DemoG.DrawImage(bitmap, 0, 0);
+            //}
+
+            //_DemoG.Dispose();
+        }
+
+        private void btnDemoStop_Click(object sender, EventArgs e)
+        {
+            _IsStopping = true;
+            btnDemoResum.Enabled = true;
+            btnDemoStop.Enabled = false;
+            StartTaskToLoadImageAndData();
+        }
+
+        private void btnDemoResum_Click(object sender, EventArgs e)
+        {
+            _IsStopping = false;
+            btnDemoResum.Enabled = false;
+            btnDemoStop.Enabled = true;
+            StartTaskToLoadImageAndData();
+        }
+
+        private void btnDemoEnd_Click(object sender, EventArgs e)
+        {
+            // 清空数据
+            _IsStopping = false;
+            _Tick = 1;
+            _MaxTick = 0;
+            //_DemoG.Dispose();
+            _DemoBitmap.Dispose();
+            _ImageFiles = null;
+
+            // 重置按钮
+            btnDemoResum.Enabled = false;
+            btnDemoStop.Enabled = false;
+            btnDemoEnd.Enabled = false;
+            txtImagePath.Enabled = true;
+            btnDemoStart.Enabled = true;
 
         }
+
+        #endregion
+
+        private void EnergyForm_Shown(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+
     }
 }
