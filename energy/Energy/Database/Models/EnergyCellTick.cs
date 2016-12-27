@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Db.Models
 {
+    [Serializable]
     public partial class EnergyCellTick
     {
         public long EnergyCellID { get; set; }

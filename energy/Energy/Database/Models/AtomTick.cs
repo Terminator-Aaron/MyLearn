@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Db.Models
 {
+    [Serializable]
     public partial class AtomTick
     {
         public long AtomID { get; set; }

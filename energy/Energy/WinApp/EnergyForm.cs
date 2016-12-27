@@ -40,6 +40,12 @@ namespace WinApp
         private Bitmap _DemoBitmap;
         private IList<FileInfo> _ImageFiles;
 
+        private Dictionary<int, List<AtomTick>> _DemoTickAtoms;
+        private Dictionary<int, List<EnergyCellTick>> _DemoTickCells;
+
+        private string _DemoTickAtomsFilePath = @"../../Data/AtomTick.tick";
+        private string _DemoTickCellsFilePath = @"../../Data/EnergyCellTick.tick";
+
         #endregion
 
 
@@ -60,8 +66,8 @@ namespace WinApp
 
             //g = this.pnlContaner.CreateGraphics();
             //g.Clear(Color.White);
-            MaxX = 150;
-            MaxY = 150;
+            MaxX = 50;
+            MaxY = 50;
 
             Experiment experiment = new Experiment()
             {
@@ -113,7 +119,7 @@ namespace WinApp
             Brush strBrush = new SolidBrush(Color.Blue);
 
 
-            for (int i = 0; i < 500; i++) // one second
+            for (int i = 0; i < 200; i++) // one second
             {
                 //if (i < 10)
                 //ExperimentLogic.SaveExperimentTickData(EnergyLogic.GetTickCells(i + 1), AtomLogic.GetTickAtoms(i + 1));
@@ -150,18 +156,38 @@ namespace WinApp
                 EnergyLogic.ArgEnergyCells();
                 AtomLogic.CalAtomStatus();
             }
+
+            Tools.BinarySerialize<Dictionary<int, List<AtomTick>>>(AtomLogic.TickAtoms, _DemoTickAtomsFilePath);
+            Tools.BinarySerialize<Dictionary<int, List<EnergyCellTick>>>(EnergyLogic.TickCells, _DemoTickCellsFilePath);
         }
 
 
 
         #region Deom
 
+        private delegate void SetDataViewDelegate(int tick);
+
+        private void SetDataView(int _Tick)
+        {
+            dgvAtom.DataSource = _DemoTickAtoms[_Tick];
+            dgvCell.DataSource = _DemoTickCells[_Tick];
+        }
+
+
         private void LoadImageAndData()
         {
             int index = _Tick - 1;
             var imagefile = _ImageFiles[index];
-            //dgvAtom.DataSource = AtomLogic.TickAtoms[_Tick];
-            //dgvCell.DataSource = EnergyLogic.TickCells[_Tick];
+
+            if (InvokeRequired)
+            {
+                this.Invoke(new SetDataViewDelegate(this.SetDataView), _Tick);
+            }
+            else
+            {
+                this.SetDataView(_Tick);
+            }
+
             Thread.Sleep(100);
             var demoG = this.pnlContaner.CreateGraphics();
             _DemoBitmap = new Bitmap(imagefile.FullName);
@@ -192,41 +218,17 @@ namespace WinApp
             btnDemoStop.Enabled = true;
             btnDemoEnd.Enabled = true;
 
-            //_DemoG = this.pnlContaner.CreateGraphics();
-            //_DemoG.Clear(Color.White);
             string filePath = txtImagePath.Text;
 
             var imageFolder = Directory.CreateDirectory(filePath);
             _ImageFiles = imageFolder.GetFiles().OrderBy(m => m.CreationTime).ToList();
             _MaxTick = _ImageFiles.Count();
 
+            _DemoTickAtoms = Tools.BinaryDeSerialize<Dictionary<int, List<AtomTick>>>(_DemoTickAtomsFilePath);
+            _DemoTickCells = Tools.BinaryDeSerialize<Dictionary<int, List<EnergyCellTick>>>(_DemoTickCellsFilePath);
+
             // 多线程
             StartTaskToLoadImageAndData();
-
-            //for (var i = 0; i < _ImageFiles.Count(); i++)
-            //{
-            //    var imagefile = _ImageFiles[i];
-            //    dgvAtom.DataSource = AtomLogic.TickAtoms[i];
-            //    dgvCell.DataSource = EnergyLogic.TickCells[i];
-
-            //    Thread.Sleep(1000);
-            //    Bitmap bitmap = new Bitmap(imagefile.FullName);
-            //    _DemoG.DrawImage(bitmap, 0, 0);
-            //}
-
-            //var i = 0;
-            //foreach (var imagefile in _ImageFiles)
-            //{
-            //    i++;
-            //    dgvAtom.DataSource = AtomLogic.TickAtoms[i];
-            //    dgvCell.DataSource = EnergyLogic.TickCells[i];
-
-            //    Thread.Sleep(1000);
-            //    Bitmap bitmap = new Bitmap(imagefile.FullName);
-            //    _DemoG.DrawImage(bitmap, 0, 0);
-            //}
-
-            //_DemoG.Dispose();
         }
 
         private void btnDemoStop_Click(object sender, EventArgs e)
