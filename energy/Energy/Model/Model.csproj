@@ -42,6 +42,7 @@
     <Compile Include="ArgEnergyCell.cs" />
     <Compile Include="AtomExtend.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="DirectoryLoadRangeDataWrap.cs" />
     <Compile Include="EnergyCellExtend.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="PositionBase2.cs" />

@@ -37,6 +37,13 @@ namespace BusinessLogic
             this.Atoms = atomExtends;
         }
 
+        public void Clear()
+        {
+            Atoms = null;
+            CalAtoms = null;
+            TickAtoms = null;
+        }
+
 
         public void InitAtoms(int maxX, int maxY, int length, int atomCounts)
         {
@@ -197,7 +204,7 @@ namespace BusinessLogic
                 tickAtoms.Add(tickAtom);
             }
 
-            this.TickAtoms.Add(tick, tickAtoms);
+            //this.TickAtoms.Add(tick, tickAtoms);
 
             return tickAtoms;
         }

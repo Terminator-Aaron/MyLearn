@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtomLogic.cs" />
+    <Compile Include="DirectoryDataManager.cs" />
     <Compile Include="ExperimentLogic.cs" />
     <Compile Include="EnergyCellLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,6 +29,13 @@ namespace BusinessLogic
             ArgCells = new List<ArgEnergyCell>();
         }
 
+        public void Clear()
+        {
+            EnergyCells = null;
+            TickCells = null;
+            ArgCells = null;
+        }
+
         public void SetEnergyCells(List<EnergyCellExtend> cellExtends)
         {
             this.EnergyCells = cellExtends;
@@ -107,7 +114,7 @@ namespace BusinessLogic
                 tickCells.Add(tickCell);
             }
 
-            this.TickCells.Add(tick, tickCells);
+            //this.TickCells.Add(tick, tickCells);
 
             return tickCells;
         }

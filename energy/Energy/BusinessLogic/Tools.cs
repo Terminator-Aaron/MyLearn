@@ -82,35 +82,35 @@ namespace BusinessLogic
 
         public static void BinarySerialize<T>(T o, string filePath)
         {
-            try
-            {
+            //try
+            //{
                 BinaryFormatter formatter = new BinaryFormatter();
                 Stream stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
                 formatter.Serialize(stream, o);
                 stream.Flush();
                 stream.Close();
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
         }
 
         public static T BinaryDeSerialize<T>(string filePath)
         {
-            try
-            {
+            //try
+            //{
                 BinaryFormatter formatter = new BinaryFormatter();
                 Stream destream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 T o = (T)formatter.Deserialize(destream);
                 destream.Flush();
                 destream.Close();
                 return o;
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
             return default(T);
         }
 

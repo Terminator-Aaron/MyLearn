@@ -120,5 +120,15 @@ namespace BusinessLogic
             DbContext.AtomTicks.AddRange(tickAtoms);
             DbContext.SaveChanges();
         }
+
+
+        public Experiment LoadExperiment(int experimentId)
+        {
+            DbContext = new EnergyContext();
+
+            var experiment = DbContext.Experiments.FirstOrDefault(m=>m.ExperimentID == experimentId);
+
+            return experiment;
+        }
     }
 }
