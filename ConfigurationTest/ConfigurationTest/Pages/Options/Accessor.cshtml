@@ -1,0 +1,17 @@
+﻿@page
+@model ConfigurationOptionsTest.Pages.Options.AccessorModel
+@using Microsoft.Extensions.Options
+@inject IOptionsMonitor<MyOptions> OptionsAccessor
+@inject IOptionsSnapshot<MyOptions> NamedOptionsAccessor
+@{
+}
+
+<p>@Model.Options.Option1</p>
+<p>@Model.Options.Option2</p>
+<hr />
+
+<p>@OptionsAccessor.CurrentValue.Option1</p>
+<p>@OptionsAccessor.CurrentValue.Option2</p>
+<hr />
+
+<p>@NamedOptionsAccessor.Get("named_options_1").Option1</p>

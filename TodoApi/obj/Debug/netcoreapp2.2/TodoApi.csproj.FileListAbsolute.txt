@@ -1,0 +1,14 @@
+G:\MyLearn2\Dotnet\TodoApi\bin\Debug\netcoreapp2.2\TodoApi.deps.json
+G:\MyLearn2\Dotnet\TodoApi\bin\Debug\netcoreapp2.2\TodoApi.runtimeconfig.json
+G:\MyLearn2\Dotnet\TodoApi\bin\Debug\netcoreapp2.2\TodoApi.runtimeconfig.dev.json
+g:\MyLearn2\Dotnet\TodoApi\bin\Debug\netcoreapp2.2\TodoApi.dll
+g:\MyLearn2\Dotnet\TodoApi\bin\Debug\netcoreapp2.2\TodoApi.pdb
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.csprojAssemblyReference.cache
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.csproj.CoreCompileInputs.cache
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.RazorAssemblyInfo.cache
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.RazorAssemblyInfo.cs
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.AssemblyInfoInputs.cache
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.AssemblyInfo.cs
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.RazorTargetAssemblyInfo.cache
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.dll
+g:\MyLearn2\Dotnet\TodoApi\obj\Debug\netcoreapp2.2\TodoApi.pdb

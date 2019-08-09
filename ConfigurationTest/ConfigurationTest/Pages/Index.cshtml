@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">NumberConfig</h1>
+    <p>@Model.NumberConfig</p>
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">StringConfig</h1>
+    <p>@Model.StringConfig</p>
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">EnviromentConfig</h1>
+    <p>@Model.EnviromentConfig</p>
+</div>
+
+
+<div class="text-center">
+    <h1 class="display-4">ConfigSection</h1>
+    <p>@Model.ConfigSection.Key</p>
+    <p>@Model.ConfigSection.Value</p>
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">Starship</h1>
+    <p>@Model.Starship.Name</p>
+</div>

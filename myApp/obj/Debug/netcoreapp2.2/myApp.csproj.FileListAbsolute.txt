@@ -1,0 +1,11 @@
+G:\MyLearn2\Dotnet\myApp\bin\Debug\netcoreapp2.2\myApp.deps.json
+G:\MyLearn2\Dotnet\myApp\bin\Debug\netcoreapp2.2\myApp.runtimeconfig.json
+G:\MyLearn2\Dotnet\myApp\bin\Debug\netcoreapp2.2\myApp.runtimeconfig.dev.json
+G:\MyLearn2\Dotnet\myApp\bin\Debug\netcoreapp2.2\myApp.dll
+G:\MyLearn2\Dotnet\myApp\bin\Debug\netcoreapp2.2\myApp.pdb
+G:\MyLearn2\Dotnet\myApp\obj\Debug\netcoreapp2.2\myApp.csprojAssemblyReference.cache
+G:\MyLearn2\Dotnet\myApp\obj\Debug\netcoreapp2.2\myApp.csproj.CoreCompileInputs.cache
+G:\MyLearn2\Dotnet\myApp\obj\Debug\netcoreapp2.2\myApp.AssemblyInfoInputs.cache
+G:\MyLearn2\Dotnet\myApp\obj\Debug\netcoreapp2.2\myApp.AssemblyInfo.cs
+G:\MyLearn2\Dotnet\myApp\obj\Debug\netcoreapp2.2\myApp.dll
+G:\MyLearn2\Dotnet\myApp\obj\Debug\netcoreapp2.2\myApp.pdb

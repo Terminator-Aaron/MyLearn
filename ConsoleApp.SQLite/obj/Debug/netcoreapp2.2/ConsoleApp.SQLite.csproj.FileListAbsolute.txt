@@ -1,0 +1,11 @@
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\bin\Debug\netcoreapp2.2\ConsoleApp.SQLite.deps.json
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\bin\Debug\netcoreapp2.2\ConsoleApp.SQLite.runtimeconfig.json
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\bin\Debug\netcoreapp2.2\ConsoleApp.SQLite.runtimeconfig.dev.json
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\bin\Debug\netcoreapp2.2\ConsoleApp.SQLite.dll
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\bin\Debug\netcoreapp2.2\ConsoleApp.SQLite.pdb
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\obj\Debug\netcoreapp2.2\ConsoleApp.SQLite.csprojAssemblyReference.cache
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\obj\Debug\netcoreapp2.2\ConsoleApp.SQLite.csproj.CoreCompileInputs.cache
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\obj\Debug\netcoreapp2.2\ConsoleApp.SQLite.AssemblyInfoInputs.cache
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\obj\Debug\netcoreapp2.2\ConsoleApp.SQLite.AssemblyInfo.cs
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\obj\Debug\netcoreapp2.2\ConsoleApp.SQLite.dll
+G:\MyLearn2\Dotnet\ConsoleApp.SQLite\obj\Debug\netcoreapp2.2\ConsoleApp.SQLite.pdb
