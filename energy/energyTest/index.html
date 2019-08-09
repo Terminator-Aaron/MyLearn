@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>energy test</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <style>
+            #black_ground{
+                margin: 10px;
+                border: 1px solid black;
+                height: 800px;
+            }
+
+            .point{
+                height: 10px;
+                width: 10px;
+                border: 1px dotted lightcoral;
+                display: block;
+                position: absolute;
+            }
+        </style>
+        <div id="black_ground">
+
+        </div>
+
+        <script>
+            // data source
+            function Point(x, y, engergy) {
+                this.x = x;
+                this.y = y;
+                this.engergy = engergy;
+            };
+
+            var points = [];
+            for(var i=1;i<=60;i++){
+                for(j=1;j<=60;j++){
+                    points.push(new Point(i,j));
+                }
+            }
+
+            function getColor(energy, max){
+                var degree = parseInt(energy/max * 256);
+                return "rgb("+degree+","+degree+","+degree+")";
+            }
+
+            var timeEnergies = [];
+            for(var g=0;g<20;g++){
+                var energies=[];
+                for(var i=1;i<=60;i++){
+                    for(j=1;j<=60;j++){
+                        energies.push(new Point(i,j, Math.random()));
+                    }
+                }
+                timeEnergies.push({time:g, energies:energies});
+            }
+
+        </script>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="bower_components/underscore/underscore-min.js"></script>
+        <script>            
+            var listCells=[];
+
+            function initPoints(points){
+                var $container = $("#black_ground");
+                for(var k=0;k<points.length;k++){
+                    var point = points[k];
+                    var left = (point.x-1) * 12 + 22;
+                    var top = (point.y-1) * 12  + 12;
+                    var id = "point_"+point.x+"_"+point.y;
+
+                    var $cell = $("<span class='point' style='left:"+left+"px;top:"+top+"px;' id='"+id+"'></span>");
+                    listCells.push({key:id, cell:$cell});
+                    $container.append($cell);
+                }
+            }
+
+            function setEnergy(energies){
+                for(var k=0;k<points.length;k++){
+                    var point = points[k];
+                    var energy = energies[k];
+                    var id = "point_"+point.x+"_"+point.y;
+                    var $cell = _.find(listCells, function(item){
+                        return item.key == id;
+                    });
+
+                    if($cell){
+                        var color = getColor(energy.engergy, 1);
+                        $cell.cell.css("background-color", color);
+                    }
+                }
+            }
+
+            initPoints(points);
+
+            setTimeout(function(){
+                var j = 0;
+                for(var k=0;k<timeEnergies.length;k++){
+                    setTimeout(function(){
+                       var energies = timeEnergies[j].energies;
+                       setEnergy(energies);
+                       j++;
+                    }, 1000*(k+1));
+                }
+            }, 2000);
+
+
+        </script>
+</body>
+
+</html>

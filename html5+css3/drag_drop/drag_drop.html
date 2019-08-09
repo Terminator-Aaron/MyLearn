@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>drap_drop</title>
+</head>
+
+<body>
+	<style type="text/css">
+		#div1,
+		#div2 {
+			float: left;
+			width: 300px;
+			height: 135px;
+			margin: 10px;
+			padding: 10px;
+			border: 1px solid #aaaaaa;
+		}
+		
+		img {
+			height: 120px;
+			width: 200px;
+		}
+	</style>
+	<div id="div1"  ondragover="allowDrop(event)" ondrop="drop(event)">
+		<img src="Koala.jpg" draggable="true" ondragstart="drag(event)" id="img1" />
+	</div>
+	<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+	<p id="msg"></p>
+
+	<script>
+		function drag(e){
+			//debugger;
+			e.dataTransfer.setData("imgId", e.target.id);		
+		}
+
+		function allowDrop(e){
+			//默认不允许drop
+			e.preventDefault();
+		}
+
+		function drop(e){
+			//debugger;
+			var imgId = e.dataTransfer.getData("imgId");
+			e.target.appendChild(document.getElementById(imgId));
+		}
+	</script>
+</body>
+
+</html>

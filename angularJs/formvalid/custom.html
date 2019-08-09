@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>custom valid</title>
+    <meta charset="utf-8"></meta>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <form name="myForm">
+        <p>
+            <label>User Name</label><input type="text" name="userName" ng-model="user.name" required>
+            <span ng-show="myForm.userName.$error.required">Required!</span>
+        </p>
+        <p>
+            <label>Last Name</label><input type="text" name="lastName" ng-model="user.last" ng-maxlength="10" ng-minlength="3">
+            <span ng-show="myForm.lastName.$error.minlength">Too short!</span>
+            <span ng-show="myForm.lastName.$error.maxlength">Too long!</span>
+        </p>
+        <p>
+            <label>User Age</label><input type="text" name="userAge" ng-model="user.age" even>
+            <span ng-show="myForm.userAge.$error.even">数字必须是偶数!</span>
+        </p>
+    </form>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        //myApp.controller("ExampleController", ["$scope", function($scope){}]);
+        myApp.directive("even", function(){
+            return {
+                restrict:"A",
+                require:"ngModel",
+                link:function(scope, ele, attrs, ngModelController){
+                    ngModelController.$parsers.push(function(viewValue){
+                        if(viewValue%2==0){
+                            ngModelController.$setValidity("even", true);
+                        }else{
+                            ngModelController.$setValidity("even", false);
+                        }
+                        return viewValue;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

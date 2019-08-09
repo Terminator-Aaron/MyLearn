@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <ul ng-repeat="x in counts">
+            <li>{{x|myFormat}}</li>
+        </ul>
+    </div>
+
+    <script>
+var app = angular.module('myApp', []);
+
+app.service('hexafy', function(){
+    // 这里实际定义成类，该类有myFunc函数
+    this.myFunc = function(x){
+        return x.toString(16);
+    }
+})
+
+app.filter('myFormat', ['hexafy', function(hexafy){
+    return function(x){
+        return hexafy.myFunc(x);
+    }
+}])
+
+
+app.controller('myCtrl', function($scope) {
+    $scope.counts = [255,231,443];
+});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>base</title>
+    <meta charset="utf-8"></meta>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Validation Example</h2>
+
+    <form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate>
+
+        <p>用户名:<br>
+            <input type="text" name="user" ng-model="user" required>
+            <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+  <span ng-show="myForm.user.$error.required">用户名是必须的。</span>
+            </span>
+        </p>
+
+        <p>邮箱:<br>
+            <input type="email" name="email" ng-model="email" required>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+  <span ng-show="myForm.email.$error.required">邮箱是必须的。</span>
+            <span ng-show="myForm.email.$error.email">非法的邮箱。</span>
+            </span>
+        </p>
+
+        <p>
+            <input type="submit" ng-disabled="myForm.$dirty && myForm.$invalid">            
+        </p>
+        myForm.$dirty={{myForm.$dirty}}
+        myForm.$invalid={{myForm.$invalid}}
+    </form>
+
+    <p>电话:<br>
+        <input type="phone" form="myForm" name="phone" ng-model="phone" required>
+        <span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+  <span ng-show="myForm.phone.$error.required">电话是必须的。</span>
+        </span>
+    </p>
+
+    <script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+    $scope.user = 'John Doe';
+    $scope.email = 'john.doe@gmail.com';
+});
+</script>
+
+</body>
+
+</html>

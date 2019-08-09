@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>form</title>
+	<meta http-equiv="Content-Type" content="text/html;chartset=utf-8"></meta>
+</head>
+
+<body>
+	<form>
+		<fieldset>
+            <legend>fieldset</legend>
+ 			<select name="cars">
+                <optgroup label="Swedish Cars">
+                    <option value="volvo">Volvo</option>
+                    <option disabled value="saab">Saab</option>
+                </optgroup>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+            </select>
+            <br/>
+
+            <label for="firstname">first name:</label>
+            <input type="text" name="firstname" maxlength="5" size=""/>
+            <br/>
+
+            radio:<input type="radio" name="sex" value="male" checked>Male
+            <input type="radio" name="sex" value="female">Female
+            <br/>
+
+            checkbox:<input type="checkbox" name="vehicle" value="Bike">I have a bike
+            <input type="checkbox" name="vehicle" value="Car">I have a car 
+            <br/>
+
+            textarea:<textarea rows="5" cols="30">
+
+            </textarea>
+            <br/>
+
+            <input type="file" name="img" multiple="multiple" />
+            <hr/>
+            <p>html5</p>
+            pattern:<input type="text" pattern="[0-9]" placeholder="pattern=&quot;[0-9]&quot;"/>
+            <br/>
+
+            color:<input type="color"/>
+            <br/>
+
+            date:<input type="date"/>
+            <br/>
+
+            datetime:<input type="datetime"/>
+            <br/>
+
+            datetime-local:<input type="datetime-local"/>
+            <br/>
+
+            month:<input type="month"/>
+            <br/>
+
+            time:<input type="time"/>
+            <br/>
+
+            week:<input type="week"/>
+            <br/>
+            
+            number:<input type="number" min="-10" max="10" step="3"/>
+            <br/>
+
+            range:<input type="range" min="-10" max="10" step="3"/>
+            <br/>
+
+            email:<input type="email"/>
+            <br/>
+            
+            tel:<input type="tel"/>
+            <br/>
+            
+            url:<input type="url"/>
+            <br/>
+            
+            search:<input type="search"/>
+            <br/>
+
+            <hr/>
+            <input list="browsers">
+            <datalist id="browsers">
+                <option value="Internet Explorer">
+                <option value="Firefox">
+                <option value="Chrome">
+                <option value="Opera">
+                <option value="Safari">
+            </datalist>             
+       </fieldset>
+        <input type="submit" />
+	</form>
+</body>
+
+</html>

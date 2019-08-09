@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>factory</title>
+        <meta charset="utf-8"></meta>
+        <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>    
+    </head>
+    <body>
+        <div ng-app="mainApp" ng-controller="CalController">
+            <input ng-model="in">
+            <input ng-model="square()">
+            <span>{{square()}}</span>
+        </div>
+        <script>
+            var mainApp = angular.module("mainApp",[]);
+            mainApp.factory("MathService", function(){
+                var factory={};
+                factory.multiply = function(a,b){
+                    return a * b;
+                }
+                return factory;
+            });
+
+            mainApp.service("CalService", function(MathService){
+                this.square = function(a){
+                    return MathService.multiply(a, a);
+                };
+            });
+
+            mainApp.controller("CalController", function($scope, MathService, CalService){
+                $scope.in = Boolean($scope.in)?$scope.in:0
+                $scope.square=function(){
+                    return CalService.square($scope.in, $scope.in);
+                };
+            });
+        </script>
+    </body>
+</html>

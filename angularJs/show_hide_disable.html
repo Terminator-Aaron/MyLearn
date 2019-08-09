@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="" ng-init="mySwitch=true">
+        <p>
+            <input type="checkbox" ng-model="mySwitch"/>
+            mySwitchValue:{{ mySwitch }}</p>
+
+        <p>ng-disabled：<button ng-disabled="mySwitch">点我!</button></p>
+        <p>ng-show:<span ng-show="mySwitch">ng-show</span></p>
+        <p>ng-hide:<span ng-hide="mySwitch">ng-hide</span></p>
+    </div>
+
+</body>
+
+</html>

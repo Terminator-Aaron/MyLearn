@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="defaultCtrl">
+        <div>
+            <button ng-click="printNames('haha')">Print Names</button>
+        </div>
+
+        
+        <div ng-controller="personCtrl1">
+        名: <input type="text" ng-model="name"><br> 
+        姓: <input type="text" ng-model="country"><br>
+        <br> 姓名: {{fullName()}}
+        <button ng-click="save()">save</button>
+        </div>
+        
+        <hr/>
+
+         <div ng-controller="personCtrl2">
+        名: <input type="text" ng-model="name"><br> 
+        姓: <input type="text" ng-model="country"><br>
+        <br> 姓名: {{fullName()}}
+        <button ng-click="save()">save</button>
+        </div>
+        
+        <hr/>
+
+        <div ng-controller="personCtrl3">
+        名: <input type="text" ng-model="name"><br> 
+        姓: <input type="text" ng-model="country"><br>
+        <br> 姓名: {{fullName()}}
+        <button ng-click="save()">save</button>
+        </div>
+        
+        <hr/>
+   
+        
+    </div>
+
+    <!--<script src="personCtrl.js"></script>-->
+    <script>
+        var app = angular.module("myApp", []);
+
+        var defaultCtrl = app.controller("defaultCtrl", function ($scope, $rootScope) {
+            $rootScope.names=[
+                {name:'Jani',country:'Norway'},
+                {name:'Hege',country:'Sweden'},
+                {name:'Kai',country:'Denmark'}
+            ];
+            
+           $scope.printNames=function(input){
+               console.log(input);
+               console.log($rootScope.names);
+           };
+           
+        });
+
+       
+        var personCtrl1 = app.controller("personCtrl1", function ($scope, $rootScope) {
+            var name = $rootScope.names[0];
+            $scope.name = name.name;
+            $scope.country =  name.country;
+            $scope.fullName = function () {
+                return $scope.name + " " + $scope.country;
+            }
+            $scope.save = function(){
+                name.name = $scope.name;
+                name.country = $scope.country;
+            }
+        });
+        
+        var personCtrl2 = app.controller("personCtrl2", function ($scope, $rootScope) {
+            var name = $rootScope.names[1];
+            $scope.name = name.name;
+            $scope.country =  name.country;
+            $scope.fullName = function () {
+                return $scope.name + " " + $scope.country;
+            }
+            $scope.save = function(){
+                name.name = $scope.name;
+                name.country = $scope.country;
+            }
+        });
+
+        var personCtrl3 = app.controller("personCtrl3", function ($scope, $rootScope) {
+            var name = $rootScope.names[2];
+            $scope.name = name.name;
+            $scope.country =  name.country;
+            $scope.fullName = function () {
+                return $scope.name + " " + $scope.country;
+            }
+             $scope.save = function(){
+                name.name = $scope.name;
+                name.country = $scope.country;
+            }
+       });
+
+    </script>
+</body>
+
+</html>

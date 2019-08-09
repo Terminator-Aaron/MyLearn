@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>text</title>
+    <meta charset="utf-8" />
+    <style>
+        div.text{
+            width: 200px;
+            border: 1px solid black;
+            overflow: hidden; /* 过长隐藏 */
+            white-space: nowrap;  /* 设置文本不换行 */
+        }
+
+        .text1{
+            text-overflow: ellipsis; /* 显示... */
+        }
+
+        .text2{
+            text-overflow: clip; /* 直接截断 */
+        }
+    </style>
+</head>
+
+<body>
+   <div class="text text1">This is some long text that will not fit in the box</div>
+   <div class="text text2">This is some long text that will not fit in the box</div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="customersCtrl">
+        <select ng-model="selectedSite" ng-options="x.site group by x.area disable when true for x in sites">
+            <option value="">-- choose site --</option>
+        </select>
+        <h1>你选择的是: {{selectedSite.site}}</h1>
+        <p>网址为: {{selectedSite.url}}</p>
+
+        <hr/>
+
+        <select ng-model="selectedSite2" ng-options="x for (x, y) in sites2">
+        </select>
+        <p>网址为: {{selectedSite2}}</p>
+    </div>
+
+    <script>
+var app = angular.module('myApp', []);
+
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+   $scope.sites = [
+        {site : "Google", url : "http://www.google.com", area:"USA"},
+        {site : "Runoob", url : "http://www.runoob.com", area:"China"},
+        {site : "Taobao", url : "http://www.taobao.com", area:"China"}
+    ];
+
+    $scope.sites2 = {
+        site01 : "Google",
+        site02 : "Runoob",
+        site03 : "Taobao"
+    };
+});
+</script>
+</body>
+
+</html>

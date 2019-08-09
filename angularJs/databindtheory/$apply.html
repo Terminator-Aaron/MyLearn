@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>数据绑定 $apply</title>
+    <meta charset="utf-8" />
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="MainCtrl">
+        <clickable foo="foo" bar="bar"></clickable>
+        <button ng-click="update()">update</button>
+    </div>
+    <script>
+            var app = angular.module("myApp",[]);
+            app.directive("clickable", function(){
+                return {
+                    restrict:"E",
+                    template:"<ul style='background-color:lightblue'><li>{{foo}}</li><li>{{bar}}</li></ul>",
+                    scope:{
+                        foo:"=",
+                        bar:"="
+                    },
+                    link:function(scope, element, attrs){
+                        // element.bind("click", function(){
+                        //     scope.foo++;
+                        //     scope.bar++;
+                        //     scope.$apply();
+                        // });
+                        element.bind("click", function(){ // 这种写法，可以让angularjs监控到错误
+                            scope.$apply(function(){
+                                scope.foo++;
+                                scope.bar++;
+                            });
+                        });
+                    }
+                };
+            })
+            app.controller("MainCtrl", function($scope){
+                $scope.foo=0;
+                $scope.bar=0;
+
+                $scope.update=function(){
+                    $scope.foo++;
+                    $scope.bar++;
+                }
+            });
+        </script>
+</body>
+
+</html>
